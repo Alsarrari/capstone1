@@ -48,8 +48,8 @@ public class MerchantStockServise {
 
         for (MerchantStock stock : merchantStocks) {
 
-            boolean sameProduct = stock.getProduct().equals(productId);
-            boolean sameMerchant = stock.getMerchantid().equals(merchantId);
+            boolean sameProduct = stock.getProductId().equals(productId);
+            boolean sameMerchant = stock.getMerchantId().equals(merchantId);
 
             if (sameProduct && sameMerchant) {
                 stock.setStock(stock.getStock() + amount);
