@@ -52,23 +52,31 @@ public class ProductController {
             return ResponseEntity.status(400).body(new ApiResponse("product not found"));
 
     }
-    @GetMapping("/high-price")
-    public ResponseEntity<?> getHighPriceProducts() {
-        return ResponseEntity.status(200).body(productServise.getHighPriceProducts());
+    @GetMapping("/expensive")
+    public ResponseEntity<?> getExpensiveProducts() {
+        return ResponseEntity.ok(productServise.getExpensiveProducts());
     }
     @GetMapping("/count")
     public ResponseEntity<?> getProductCount() {
-        return ResponseEntity.status(200).body(productServise.getProductCount());
+        return ResponseEntity.ok(productServise.getProductCount());
     }
-    @PutMapping("/discount/{id}")
-    public ResponseEntity<?> applyDiscount(@PathVariable String id) {
-        boolean done = productServise.applyDiscount(id);
-
-        if (done)
-            return ResponseEntity.status(200).body(new ApiResponse("Discount applied"));
-
-        return ResponseEntity.status(400).body(new ApiResponse("Product not found"));
+    @PutMapping("/discount")
+    public ResponseEntity<?> discountProducts() {
+        productServise.discountAllProducts();
+        return ResponseEntity.ok(new ApiResponse("All products discounted by 10%"));
     }
+
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<?> getProductsByCategory(@PathVariable String categoryId) {
+        return ResponseEntity.ok(productServise.getProductsByCategory(categoryId));
+    }
+
+    @GetMapping("/search/{name}")
+    public ResponseEntity<?> searchProductsByName(@PathVariable String name) {
+        return ResponseEntity.ok(productServise.searchProductsByName(name));
+    }
+
+
 
 
 
