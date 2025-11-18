@@ -19,7 +19,7 @@ public class Product {
     @Positive(message = "the number must be positive")
     private double price;
     @NotEmpty(message = "the category cannot must be empty ")
-    private String categoryid;
+    private String categoryId;
 
 
 }
