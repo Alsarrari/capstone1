@@ -37,27 +37,39 @@ public class ProductServise {
        }
 return false;
    }
-    public ArrayList<Product> getHighPriceProducts() {
+    public ArrayList<Product> getExpensiveProducts() {
         ArrayList<Product> result = new ArrayList<>();
-        for (Product pro  : products) {
-            if (pro.getPrice() > 100) {
-                result.add(pro);
-            }
+        for(Product p : products) {
+            if(p.getPrice() > 100) result.add(p);
         }
         return result;
     }
     public int getProductCount() {
         return products.size();
     }
-    public boolean applyDiscount(String id) {
-        for (Product p : products) {
-            if (p.getId().equals(id)) {
-                double newPrice = p.getPrice() * 0.90;
-                p.setPrice(newPrice);
-                return true;
-            }
+
+
+
+    public void discountAllProducts() {
+        for(Product p : products) {
+            p.setPrice(p.getPrice() * 0.9);
         }
-        return false;
+    }
+
+    public ArrayList<Product> getProductsByCategory(String categoryId) {
+        ArrayList<Product> result = new ArrayList<>();
+        for(Product p : products) {
+            if(p.getCategoryId().equals(categoryId)) result.add(p);
+        }
+        return result;
+    }
+
+    public ArrayList<Product> searchProductsByName(String name) {
+        ArrayList<Product> result = new ArrayList<>();
+        for(Product p : products) {
+            if(p.getName().toLowerCase().contains(name.toLowerCase())) result.add(p);
+        }
+        return result;
     }
 
 
